@@ -69,7 +69,7 @@ const AuthPage: React.FC<AuthPageProps> = (props) => {
             name="last_name"
             placeholder="Last name"
             onChange={(e) => setLastName(e.target.value)}
-          />          
+          />
           <input
             type="text"
             name="email"
