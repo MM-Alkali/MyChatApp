@@ -23,6 +23,7 @@ import ChatSection, {
 
 function App() {
   const [user, setUser] = useState();
+
   const renderChatFeed = (chatAppState: any) => {
     return (
       <ChatSection chatAppState={chatAppState}>
@@ -51,20 +52,21 @@ function App() {
     return <ChatSection.NewMessage />; // Update component name
   };
 
-  const chatEngineProps: ChatEngineProps = {
-    projectID: "4dd2c849-bcb1-4f22-b3fc-796bec5d4d19",
-    username: "zee",
-    secret: "1234",
-    height: "100vh",
-    width: "500px",
-    renderChatFeed,
-    renderMessageBubble,
-    renderNewMessageForm,
-  };
-
   if (!user) {
     return <AuthPage onAuth={(user) => setUser(user)} />;
   } else {
+    const chatEngineProps: ChatEngineProps = {
+      projectID: "4dd2c849-bcb1-4f22-b3fc-796bec5d4d19",
+      userName: user.username, // Use dynamic username
+      userSecret: user.secret, // Use dynamic secret
+      height: "100vh",
+      width: "500px",
+      renderChatFeed,
+      renderMessageBubble,
+      renderNewMessageForm,
+    };
+    console.log(user.username, user.secret);
+
     return <ChatEngine {...chatEngineProps} />;
   }
 }
